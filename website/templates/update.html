@@ -1,0 +1,29 @@
+{% extends "base.html" %} {% block title %}Update{% endblock %}
+
+    {% block content %}
+    <h1 align="center">Edit Note</h1>
+    <ul class="list-group list-group-flush" id="notes">
+        {% for note in user.notes %}
+        {% if id == note.id %}
+        <li class="list-group-item" >
+            
+            <p style="display:inline">{{ note.data }}</p>
+            <p style="display:inline" class="font-weight-light font-italic">{{ note.date }}</p>  
+            <form method="post">
+                <textarea name="note" id="note" class="form-control"> </textarea>
+                <br>
+                <button type="submit" class="close", name="home", value="{{note.id}}"  >
+                    <span aria-hidden="true">&#9998;</span>
+                </button>
+            </form>
+        </li>
+        
+        {% endif %}
+        {% endfor %}
+    </ul>
+
+    
+   
+    {% endblock %}
+
+                

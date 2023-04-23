@@ -4,20 +4,37 @@
     <h1 align="center">Notes</h1>
     <ul class="list-group list-group-flush" id="notes">
         {% for note in user.notes %}
-        <li class="list-group-item">{{ note.data }} {{ note.date }}
-                <button type="button" class="close" onClick="deleteNote({{ note.id }})">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </form>
+        <li class="list-group-item" >
+            
+            <p style="display:inline">{{ note.data }}</p>
+            <p style="display:inline" class="font-weight-light font-italic">Created at: {{ note.date }}</p>  
+            {% if note.have_update%}
+            <p style="display:inline" class="font-weight-light font-italic">Updated at: {{ note.updated_date }}</p>  
+            {% endif %}
+            <div align="right" >
+                <div class="btn-group btn-group-sm" role="group" >
+                    <button type="button" class="btn btn-secondary btn-sm" style="margin-right: 5px;"  onClick="deleteNote({{ note.id }})">
+                        <span aria-hidden="true" class="font-weight-light">Delete</span>
+                    </button>
+                
+                
+                    <form action="{{ url_for('views.update', id=note['id']) }}" method="post">
+                        <button type="submit" class="btn btn-secondary btn-sm"  name="home" value="fromHome"  >
+                            <span aria-hidden="true" class="font-weight-light">Edit</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
         </li>
         {% endfor %}
     </ul>
-    <form method="POST">
+    <form method="post">
         <textarea name="note" id="note" class="form-control"> </textarea>
         <br>
         <div align="center">
             <button type="submit" class="btn btn-primary">Add Note</button>
         </div>
+    </form>
     {% endblock %}
 
     

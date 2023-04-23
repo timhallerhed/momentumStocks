@@ -1,4 +1,3 @@
-
 function deleteNote(noteId) {
   
     fetch("/delete-note", {
@@ -10,3 +9,4 @@ function deleteNote(noteId) {
         window.location.href = "/";
     });
 }
+
